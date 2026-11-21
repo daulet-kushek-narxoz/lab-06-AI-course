@@ -1,0 +1,52 @@
+{
+  "harness_controls": [
+    "validate_input",
+    "blind",
+    "refuse",
+    "log",
+    "escalate"
+  ],
+  "format_problems": [],
+  "entries": [
+    {
+      "control": "validate_input",
+      "principle": "Safety and security (robustness): the system acts only on input it can interpret correctly",
+      "principle_source": "Law of the RK 'On Artificial Intelligence' No. 230-VIII (17.11.2025), Art. 4 subpara 7 and Art. 11 ('Безопасность и защищенность'); OECD Recommendation on AI (OECD/LEGAL/0449, 2019, rev. 2024), principle 'Robustness, security and safety' (non-binding recommendation)",
+      "instrument": "Law of the RK 'On Personal Data and Their Protection' No. 94-V (21.05.2013, as amended)",
+      "provision": "Art. 7 para. 9 (no processing of data excessive for the purpose); Art. 12 para. 1 (only data necessary and sufficient); AI Law 230-VIII Art. 15 para. 2 subpara 2 (owner's duty of reliability)",
+      "why_here": "Part 4 showed the bare pipeline screens a GPA of 9.9 and an exam score of -5 without objection, so an impossible record would get a model decision and a score; validation refuses it before any model call."
+    },
+    {
+      "control": "blind",
+      "principle": "Fairness and equality / non-discrimination",
+      "principle_source": "AI Law 230-VIII Art. 4 subpara 2 and Art. 6 ('Справедливость и равенство'); OECD/LEGAL/0449 principle 'Human rights and democratic values, including fairness and privacy'",
+      "instrument": "Constitution of the RK (adopted by referendum 15.03.2026) and Law 94-V",
+      "provision": "Constitution 2026 Art. 16 para. 2 (no discrimination on grounds incl. origin, sex, nationality, language); Law 94-V Art. 7 para. 9 (data excessive to the purpose not processed)",
+      "why_here": "No attribute stood clear of its floor (name_language 2/40, gender_coded_name 4/40 vs null_name 0/40; university 1/40 vs null_university 1/40), but flagship applicants scored +2.5 [+1.1, +4.1] above regional ones (sign p = 0.002), and neither name nor university is a merit criterion, so the model is not shown them."
+    },
+    {
+      "control": "refuse",
+      "principle": "Legality and purpose limitation; human autonomy (freedom of will in decisions about oneself)",
+      "principle_source": "AI Law 230-VIII Art. 5 ('Законность') and Art. 9 ('Приоритет благополучия человека, свободы воли в принятии им решений')",
+      "instrument": "Law 94-V 'On Personal Data and Their Protection'; AI Law 230-VIII",
+      "provision": "Law 94-V Art. 19-1 para. 1 (automated processing that creates or ends rights is prohibited without the subject's consent) and Art. 7 para. 8 (specific, predetermined lawful purposes); AI Law Art. 17 para. 3 subparas 2-3 (exploiting age vulnerability; scoring by social behaviour prohibited)",
+      "why_here": "Part 4: the bare pipeline screened a ranking-by-ethnicity request, a 17-year-old, an applicant without consent and a name field carrying an instruction; the harness refused all of these with no model call."
+    },
+    {
+      "control": "log",
+      "principle": "Responsibility and controllability (accountability, traceability)",
+      "principle_source": "AI Law 230-VIII Art. 4 subpara 4 and Art. 8 ('Ответственность и подконтрольность'); OECD/LEGAL/0449 principle 'Accountability'",
+      "instrument": "Law 94-V; AI Law 230-VIII; Regulation (EU) 2024/1689 (AI Act) as a benchmark only",
+      "provision": "Law 94-V Art. 22 para. 1 (protection measures, incl. registration of actions in subpara 5); AI Law Art. 15 para. 2 subpara 3 (documentation) and Art. 7 para. 2 (right to be informed of the order and consequences of automated processing); AI Act Art. 12(1) logs and Art. 26(6) six-month retention (benchmark: does not bind a Kazakhstani fund)",
+      "why_here": "Part 1 found divergences too small to settle with 40 pairs (an exact test needs at least 6 one-sided flips), so the only way to find a real effect later is a per-decision record (input hash, fields shown/withheld, raw reply, reason code) that can be re-analysed without re-running the model."
+    },
+    {
+      "control": "escalate",
+      "principle": "Human oversight and determination (constant human control over the AI system)",
+      "principle_source": "AI Law 230-VIII Art. 8 para. 1 (owners/users must ensure constant control over the AI system); OECD/LEGAL/0449 principle 'Human rights and democratic values' (human agency and oversight)",
+      "instrument": "Law 94-V; AI Law 230-VIII; Regulation (EU) 2024/1689 as a benchmark only",
+      "provision": "Law 94-V Art. 19-1 paras. 2-3 (explain automated processing, allow objection, decide on it within three working days); AI Law Art. 7 para. 2 (right to object to automated processing); AI Act Art. 14(1) and Annex III point 3(a) (benchmark)",
+      "why_here": "Every flip in Part 1 sat at the shortlist/reject boundary (shortlists at 45, rejects at 40-45); on the blinded scores that boundary lies between 45 and 50, so the band (40, 50) sends every decision next to it to a person."
+    }
+  ]
+}
